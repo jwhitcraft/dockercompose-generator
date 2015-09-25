@@ -21,12 +21,11 @@ module DockerCompose
     end
 
     def self.to_yaml
-
       yaml = {}
 
-      @@services.each {|key,obj|
+      @@services.each do |key,obj|
         yaml[key] = obj.attrs
-      }
+      end
 
       yaml.to_yaml
     end

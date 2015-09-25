@@ -1,17 +1,12 @@
 module DockerCompose
   module Generator
     class Service
-
-      @name
-
-      @attrs
-
       attr_reader :name, :attrs
 
       def initialize(name, image)
         @name = name
         @attrs = {
-            'image' => image
+          'image' => image
         }
       end
 
@@ -23,25 +18,25 @@ module DockerCompose
         drop_from_object('environment', name.upcase)
       end
 
-      def has_environment?(name)
-        !!(@attrs['environment'] && @attrs['environment'][name.upcase])
+      def environment?(name)
+        (@attrs['environment'] && @attrs['environment'][name.upcase])
       end
 
-      def add_link(service, link_name=nil)
+      def add_link(service, link_name = nil)
         name = service.name
         name = "#{name}:#{link_name}" unless link_name.nil?
 
         add_to_array('links', name)
       end
 
-      def drop_link(service, link_name=nil)
+      def drop_link(service, link_name = nil)
         name = service.name
         name = "#{name}:#{link_name}" unless link_name.nil?
 
         drop_from_array('links', name)
       end
 
-      def has_link?(service, link_name=nil)
+      def link?(service, link_name = nil)
         name = service.name
         name = "#{name}:#{link_name}" unless link_name.nil?
 
@@ -49,7 +44,7 @@ module DockerCompose
         links.include?(name)
       end
 
-      def add_port(source, target = nil, type='tcp')
+      def add_port(source, target = nil, type = 'tcp')
         target ||= source
 
         add_to_array('ports', "#{source}:#{target}/#{type}")
@@ -61,7 +56,7 @@ module DockerCompose
         drop_from_array('ports', "#{source}:#{target}/#{type}")
       end
 
-      def has_port?(source, target = nil, type='tcp')
+      def port?(source, target = nil, type='tcp')
         target ||= source
 
         ports = @attrs['ports'] || []
@@ -69,6 +64,7 @@ module DockerCompose
       end
 
       private
+
       def add_to_array(array_name, value)
         @attrs[array_name] ||= []
         @attrs[array_name].push(value)
