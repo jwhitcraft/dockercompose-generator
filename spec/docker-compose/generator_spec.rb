@@ -23,13 +23,13 @@ describe 'DockerCompose::Generator' do
     end
   end
 
-  context '#has_service?' do
+  context '#service?' do
     it 'will be false when no service exists' do
-      expect(DockerCompose::Generator.has_service?('test')).to be_falsey
+      expect(DockerCompose::Generator.service?('test')).to be_falsey
     end
 
     it 'will be trie when a service exists' do
-      expect(DockerCompose::Generator.has_service?(service_name)).to be_truthy
+      expect(DockerCompose::Generator.service?(service_name)).to be_truthy
     end
 
     context '#get_service' do

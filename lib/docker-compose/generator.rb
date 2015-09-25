@@ -5,25 +5,27 @@ require 'docker-compose/generator/service'
 module DockerCompose
   module Generator
 
-    @@services
+    # Services Cache
+    #
+    # @param [Hash]
+    @services = {}
 
     def self.create_service(name, image)
-      @@services ||= {}
-      @@services[name] = Service.new(name, image)
+      @services[name] = Service.new(name, image)
     end
 
-    def self.has_service?(name)
-      !!(@@services[name])
+    def self.service?(name)
+      (@services[name])
     end
 
     def self.get_service(name)
-      @@services[name] if self.has_service?(name)
+      @services[name] if self.service?(name)
     end
 
     def self.to_yaml
       yaml = {}
 
-      @@services.each do |key,obj|
+      @services.each do |key,obj|
         yaml[key] = obj.attrs
       end
 
