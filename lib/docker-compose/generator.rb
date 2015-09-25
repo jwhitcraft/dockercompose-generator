@@ -6,7 +6,6 @@ module DockerCompose
   # Static Generator Class
   # Used to create and keep track of services
   module Generator
-
     # Services Cache
     #
     # @param [Hash]
