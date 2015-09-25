@@ -55,6 +55,11 @@ web:
   - db:mysql
 ```
 
+## TODO
+
+- Support more options than `links`, `ports`, and `environment` variables
+- Add an Importer to seed the services
+
 ## Contributing
 
 1. Fork it ( https://github.com/jwhitcraft/dockercompose-generator/fork )
