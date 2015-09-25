@@ -1,6 +1,6 @@
 # DockerCompose::Generator
 
-[![Build Status](https://travis-ci.org/jwhitcraft/dockercompose-generator.svg?branch=master)](https://travis-ci.org/jwhitcraft/dockercompose-generator) [![Coverage Status](https://coveralls.io/repos/jwhitcraft/dockercompose-generator/badge.svg?branch=master&service=github)](https://coveralls.io/github/jwhitcraft/dockercompose-generator?branch=master)
+[![Build Status](https://travis-ci.org/jwhitcraft/dockercompose-generator.svg?branch=master)](https://travis-ci.org/jwhitcraft/dockercompose-generator) [![Coverage Status](https://coveralls.io/repos/jwhitcraft/dockercompose-generator/badge.svg?branch=master&service=github)](https://coveralls.io/github/jwhitcraft/dockercompose-generator?branch=master) [![Code Climate](https://codeclimate.com/github/jwhitcraft/dockercompose-generator/badges/gpa.svg)](https://codeclimate.com/github/jwhitcraft/dockercompose-generator)
 
 Generate a Docker-Compose Yaml file 
 
