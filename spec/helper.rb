@@ -7,6 +7,9 @@ if RUBY_ENGINE == 'ruby'
     Coveralls::SimpleCov::Formatter
   ]
   SimpleCov.start
+
+  require 'codeclimate-test-reporter'
+  CodeClimate::TestReporter.start
 end
 
 require 'yaml'

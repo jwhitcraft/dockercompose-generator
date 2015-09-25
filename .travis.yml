@@ -5,3 +5,6 @@ rvm:
  - "2.2.2"
 notifications:
   email: false
+addons:
+    code_climate:
+        repo_token: 668bb7c5d7f42d3e8dcb17598688bd650d21f6b600f54094f7da97d74c0b43ab
