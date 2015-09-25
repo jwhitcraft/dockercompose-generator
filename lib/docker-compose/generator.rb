@@ -3,6 +3,8 @@ require 'docker-compose/generator/version'
 require 'docker-compose/generator/service'
 
 module DockerCompose
+  # Static Generator Class
+  # Used to create and keep track of services
   module Generator
 
     # Services Cache
@@ -25,7 +27,7 @@ module DockerCompose
     def self.to_yaml
       yaml = {}
 
-      @services.each do |key,obj|
+      @services.each do |key, obj|
         yaml[key] = obj.attrs
       end
 

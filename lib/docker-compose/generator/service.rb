@@ -1,5 +1,8 @@
 module DockerCompose
   module Generator
+    # Service Class
+    #
+    # Used to interact with services
     class Service
       attr_reader :name, :attrs
 
@@ -50,13 +53,13 @@ module DockerCompose
         add_to_array('ports', "#{source}:#{target}/#{type}")
       end
 
-      def drop_port(source, target, type='tcp')
+      def drop_port(source, target, type = 'tcp')
         target ||= source
 
         drop_from_array('ports', "#{source}:#{target}/#{type}")
       end
 
-      def port?(source, target = nil, type='tcp')
+      def port?(source, target = nil, type = 'tcp')
         target ||= source
 
         ports = @attrs['ports'] || []

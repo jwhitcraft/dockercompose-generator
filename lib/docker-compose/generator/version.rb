@@ -1,4 +1,5 @@
 module DockerCompose
+  # Injects the VERSION into the Generator Module
   module Generator
     # Current major release.
     # @return [Integer]
