@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["jwhitcraft@h2ik.co"]
   spec.summary       = %q{Programmatically Create a yaml file for Docker-Compose}
   spec.description   = %q{}
-  spec.homepage      = "https://github.com/jwhitcraft/docker-compose-generator"
+  spec.homepage      = "https://github.com/jwhitcraft/dockercompose-generator"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
