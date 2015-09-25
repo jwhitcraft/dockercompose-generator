@@ -9,7 +9,7 @@ Generate a Docker-Compose Yaml file
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'docker-compose-generator'
+gem 'dockercompose-generator'
 ```
 
 And then execute:
@@ -18,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install docker-compose-generator
+    $ gem install dockercompose-generator
 
 ## Usage
 
@@ -57,7 +57,7 @@ web:
 
 ## Contributing
 
-1. Fork it ( https://github.com/jwhitcraft/docker-compose-generator/fork )
+1. Fork it ( https://github.com/jwhitcraft/dockercompose-generator/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
