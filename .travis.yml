@@ -1,11 +1,19 @@
 language: ruby
 rvm:
- - "1.9.3"
- - "2.0.0"
- - "2.1.4"
- - "2.2.2"
+- 1.9.3
+- 2.0.0
+- 2.1.4
+- 2.2.2
 notifications:
   email: false
 addons:
-    code_climate:
-        repo_token: 668bb7c5d7f42d3e8dcb17598688bd650d21f6b600f54094f7da97d74c0b43ab
+  code_climate:
+    repo_token: 668bb7c5d7f42d3e8dcb17598688bd650d21f6b600f54094f7da97d74c0b43ab
+deploy:
+  provider: rubygems
+  api_key:
+    secure: UQmEbIJ3z2ZJ1WOuGPQEtIHeDEEhCxol3kdL7CNFDzYge9gU2jqWfVbgBgB2fmhlOCsREy7VHettGpPoPQ0chYtOIAZcoL/8HBjnkcab6ucllCI90NDjQ8wTja2WTAPJQ3f6MeY3bu9bHlI+Wwn8dmPYnGu0NbDva5YdVZmA0jD2f8vOWBLr2RSg7MmP+cvAUMyBf+eNH/IcYdP9mz1/fney37Dy7fUu0mUuLTqP8/gO9uc2wom9GkFcMHZyfnUQwQVun4raimJX7R9i/3zVxPxrL6/IJ9qQ1NxwRRDhN12gmkviJ7vW+zTbjCQc/fXghoaeivJWtMSR3sfYRPBTjSU6YbNZjD0uFLuyHHLwhBbTZyY9vxaYbY9RFtbg5Fmc0MA4xrRNFzi25wUMm3XDDfvMmV6XCRsWFxej/c95AlKzGxaps0uDjnEoETUnz5Dg+pX4WqV788rajDcBFv3Obc5WyDVnelIzoZQ6MCh51ZtDSw3t1t2Go1XaKmjZxLtp0/UmaB4N4qlfN5pMaiVg3lhwuPBWifDSMnyIEmWHLzobIJTlCyEdavDXwFjBBXF1gktHSc+MNvdr4eECGUaxa4T1jMEXQ5IF4POFUFxQlVdp0h0dWFvCHMLlLWNv3ZlMoBa7tV6yl/gOkHH+kyRsEmZZTBgIT9o/YcgTzgd5VO8=
+  gem: dockercompose-generator
+  on:
+    tags: true
+    repo: jwhitcraft/dockercompose-generator

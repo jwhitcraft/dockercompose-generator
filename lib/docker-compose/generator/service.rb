@@ -1,9 +1,32 @@
+require 'docker-compose/generator/service/ports'
+require 'docker-compose/generator/service/links'
+require 'docker-compose/generator/service/environment'
+require 'docker-compose/generator/service/labels'
+require 'docker-compose/generator/service/net'
+require 'docker-compose/generator/service/pid'
+require 'docker-compose/generator/service/volumes'
+
 module DockerCompose
   module Generator
     # Service Class
     #
     # Used to interact with services
     class Service
+      # Handles Ports
+      include Ports
+      # Handles Links and External Links
+      include Links
+      # Handles Environment Variables
+      include Environment
+      # Handles Labels
+      include Labels
+      # Handles Net Setting
+      include Net
+      # Handles Pid Setting
+      include Pid
+      # Handles Volumes
+      include Volumes
+
       attr_reader :name, :attrs
 
       def initialize(name, image)
@@ -13,57 +36,40 @@ module DockerCompose
         }
       end
 
-      def add_environment(name, value)
-        add_to_object('environment', name.upcase, value)
+      # Variables that only allow one value
+      #
+      # Create the {method=} and {method?} methods dynamically
+      # since these only accept one value
+      [:build, :dockerfile, :command, :working_dir, :entrypoint, :user,
+       :hostname, :domainname, :mac_address, :mem_limit, :memswap_limit,
+       :privileged, :restart, :stdin_open, :tty, :cpu_shares, :cpuset,
+       :read_only, :volume_driver, :container_name].each do |method|
+        define_method "#{method}?" do
+          (@attrs["#{method}"])
+        end
+        define_method "#{method}=" do |value|
+          @attrs["#{method}"] = value
+        end
       end
 
-      def drop_environment(name)
-        drop_from_object('environment', name.upcase)
-      end
+      # Variables that are a list of single items
+      #
+      # Create the {add_method}, {drop_method} and {method?} dynamically
+      # since they accept a list of single objects
+      [:expose, :volumes_from, :dns, :extra_hosts, :dns_search, :cap_add,
+       :cap_drop, :env_file].each do |method|
+        define_method "#{method}?" do |item|
+          items = @attrs["#{method}"] || []
+          items.include?(item)
+        end
 
-      def environment?(name)
-        (@attrs['environment'] && @attrs['environment'][name.upcase])
-      end
+        define_method "add_#{method}" do |item|
+          add_to_array("#{method}", item)
+        end
 
-      def add_link(service, link_name = nil)
-        name = service.name
-        name = "#{name}:#{link_name}" unless link_name.nil?
-
-        add_to_array('links', name)
-      end
-
-      def drop_link(service, link_name = nil)
-        name = service.name
-        name = "#{name}:#{link_name}" unless link_name.nil?
-
-        drop_from_array('links', name)
-      end
-
-      def link?(service, link_name = nil)
-        name = service.name
-        name = "#{name}:#{link_name}" unless link_name.nil?
-
-        links = @attrs['links'] || []
-        links.include?(name)
-      end
-
-      def add_port(source, target = nil, type = 'tcp')
-        target ||= source
-
-        add_to_array('ports', "#{source}:#{target}/#{type}")
-      end
-
-      def drop_port(source, target, type = 'tcp')
-        target ||= source
-
-        drop_from_array('ports', "#{source}:#{target}/#{type}")
-      end
-
-      def port?(source, target = nil, type = 'tcp')
-        target ||= source
-
-        ports = @attrs['ports'] || []
-        ports.include?("#{source}:#{target}/#{type}")
+        define_method "drop_#{method}" do |item|
+          drop_from_array("#{method}", item)
+        end
       end
 
       private
