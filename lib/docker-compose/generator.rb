@@ -63,7 +63,7 @@ module DockerCompose
     #   The yaml object to convert to services
     def self.import(yaml_object)
       yaml_object.each do |key, value|
-        service = self.create_service(key, value['image'])
+        service = create_service(key, value['image'])
         service.import(value)
       end
     end
