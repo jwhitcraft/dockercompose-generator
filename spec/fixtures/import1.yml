@@ -1,0 +1,17 @@
+---
+elastic:
+  image: elasticsearch:1.4
+db:
+  image: mysql:5.6
+  environment:
+    MYSQL_ROOT_PASSWORD: test
+    MYSQL_DATABASE: test
+    MYSQL_USER: test
+    MYSQL_PASSWORD: test
+web:
+  image: php:5.6-apache
+  links:
+  - db:mysql
+  - elastic
+  ports:
+  - 80:80

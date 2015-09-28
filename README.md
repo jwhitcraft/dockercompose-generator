@@ -57,8 +57,8 @@ web:
 
 ## TODO
 
-- Support more options than `links`, `ports`, and `environment` variables
-- Add an Importer to seed the services
+- ~~Support more options than `links`, `ports`, and `environment` variables~~
+- ~~Add an Importer to seed the services~~
 
 ## Contributing
 
