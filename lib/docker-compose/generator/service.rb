@@ -50,7 +50,7 @@ module DockerCompose
       [:build, :dockerfile, :command, :working_dir, :entrypoint, :user,
        :hostname, :domainname, :mac_address, :mem_limit, :memswap_limit,
        :privileged, :restart, :stdin_open, :tty, :cpu_shares, :cpuset,
-       :read_only, :volume_driver, :container_name].each do |method|
+       :read_only, :volume_driver, :container_name, :image].each do |method|
         define_method "#{method}?" do
           (@attrs["#{method}"])
         end
