@@ -29,6 +29,13 @@ module DockerCompose
 
       attr_reader :name, :attrs
 
+      # Initialize Method
+      #
+      # @param [String] name
+      #   The name of the service
+      #
+      # @param [String] image
+      #   The image to use
       def initialize(name, image)
         @name = name
         @attrs = {
@@ -43,7 +50,7 @@ module DockerCompose
       [:build, :dockerfile, :command, :working_dir, :entrypoint, :user,
        :hostname, :domainname, :mac_address, :mem_limit, :memswap_limit,
        :privileged, :restart, :stdin_open, :tty, :cpu_shares, :cpuset,
-       :read_only, :volume_driver, :container_name].each do |method|
+       :read_only, :volume_driver, :container_name, :image].each do |method|
         define_method "#{method}?" do
           (@attrs["#{method}"])
         end
@@ -70,6 +77,14 @@ module DockerCompose
         define_method "drop_#{method}" do |item|
           drop_from_array("#{method}", item)
         end
+      end
+
+      # Import the attrs hash
+      #
+      # @param [Hash] attrs
+      #   The attribute hash from the main import
+      def import(attrs)
+        @attrs = attrs
       end
 
       private

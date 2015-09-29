@@ -42,6 +42,24 @@ describe 'DockerCompose::Generator' do
         expect(DockerCompose::Generator.get_service('test_spec')).to eq(srv)
       end
     end
+  end
 
+  context '#import' do
+    let(:file) { fixture('import1.yml') }
+
+    before(:each) do
+      DockerCompose::Generator.reset!
+      DockerCompose::Generator.import(YAML.load(file))
     end
+
+    it 'will create three items' do
+      expect(DockerCompose::Generator.get_service('web')).to be_a(DockerCompose::Generator::Service)
+      expect(DockerCompose::Generator.get_service('elastic')).to be_a(DockerCompose::Generator::Service)
+      expect(DockerCompose::Generator.get_service('db')).to be_a(DockerCompose::Generator::Service)
+    end
+
+    it 'will return the same yaml after import' do
+      expect(DockerCompose::Generator.to_yaml).to eq(fixture_read('import1.yml'))
+    end
+  end
 end

@@ -53,6 +53,14 @@ describe 'DockerCompose::Generator::Service' do
     end
   end
 
+  context '#image' do
+    it 'allows changing the image' do
+      expect(service.attrs['image']).to eq('test_image')
+      service.image = 'new_image'
+      expect(service.attrs['image']).to eq('new_image')
+    end
+  end
+
 
   context 'environment' do
     it 'sets environment variable' do
