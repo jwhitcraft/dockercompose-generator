@@ -44,6 +44,18 @@ describe 'DockerCompose::Generator' do
     end
   end
 
+  context '#remove_service!' do
+    it 'will return nil when the service is not found' do
+      expect(DockerCompose::Generator.remove_service!('test')).to be_nil
+    end
+
+    it 'will return the service that was removed' do
+      srv = DockerCompose::Generator.create_service('test_spec', service_image)
+      expect(DockerCompose::Generator.remove_service!('test_spec')).to eq(srv)
+      expect(DockerCompose::Generator.service?('test_spec')).to be_falsey
+    end
+  end
+
   context '#import' do
     let(:file) { fixture('import1.yml') }
 
