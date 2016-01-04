@@ -41,6 +41,17 @@ module DockerCompose
       @services[name] if self.service?(name)
     end
 
+    # Remove a Service
+    #
+    # @param [String] name
+    #   The name of the service to remove
+    #
+    # @return [Service|Nil]
+    #   The removed service, or nil if no service was removed
+    def self.remove_service!(name)
+      @services.delete(name)
+    end
+
     # Convert The Services to Yaml
     def self.to_yaml
       yaml = {}
