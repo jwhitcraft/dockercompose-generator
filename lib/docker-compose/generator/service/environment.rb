@@ -11,6 +11,10 @@ module DockerCompose
           drop_from_object('environment', name.upcase)
         end
 
+        def get_environment(name)
+          get_from_object('environment', name.upcase) if environment?(name)
+        end
+
         def environment?(name)
           (@attrs['environment'] && @attrs['environment'][name.upcase])
         end

@@ -11,7 +11,7 @@ module DockerCompose
 
     # Current patch level.
     # @return [Integer]
-    PATCH = 0
+    PATCH = 1
 
     # Full release version.
     # @return [String]

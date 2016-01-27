@@ -7,6 +7,10 @@ module DockerCompose
           add_to_object('labels', name, value)
         end
 
+        def get_label(name)
+          get_from_object('labels', name) if label?(name)
+        end
+
         def drop_label(name)
           drop_from_object('labels', name)
         end

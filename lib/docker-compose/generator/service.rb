@@ -104,6 +104,10 @@ module DockerCompose
         @attrs[obj_key][key] = value
       end
 
+      def get_from_object(obj_key, key)
+        @attrs[obj_key][key]
+      end
+
       def drop_from_object(obj_key, key)
         @attrs[obj_key] ||= {}
         @attrs[obj_key].delete(key)
