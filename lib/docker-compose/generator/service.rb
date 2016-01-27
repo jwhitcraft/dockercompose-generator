@@ -57,6 +57,9 @@ module DockerCompose
         define_method "#{method}=" do |value|
           @attrs["#{method}"] = value
         end
+        define_method "#{method}" do
+          @attrs["#{method}"]
+        end
       end
 
       # Variables that are a list of single items
